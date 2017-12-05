@@ -1,0 +1,1 @@
+[![CircleCI](https://circleci.com/gh/lorenzomartino86/anomaly-detector.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/lorenzomartino86/anomaly-detector)
