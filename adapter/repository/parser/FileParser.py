@@ -4,13 +4,9 @@ from domain.usecase.port.Parser import Parser
 
 class FileParser(Parser):
 
-    def __init__(self, path):
-        self.path = path
-
-    def parse(self):
-        file = open(self.path)
-        records = list()
-        for row in file:
+    def parse(self, records):
+        parsed_records = list()
+        for row in records:
             raw = RawInput(corpus=row)
-            records.append(raw)
-        return records
+            parsed_records.append(raw)
+        return parsed_records

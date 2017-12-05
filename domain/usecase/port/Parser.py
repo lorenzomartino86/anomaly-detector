@@ -3,4 +3,4 @@ from abc import abstractmethod
 class Parser:
 
     @abstractmethod
-    def parse(self): pass
+    def parse(self, records): pass

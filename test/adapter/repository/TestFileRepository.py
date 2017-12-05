@@ -12,9 +12,8 @@ class TestFileRepository(unittest.TestCase):
         self.repository = FileRepository(path='../../resources/train.txt')
 
     def test_get_from_repository(self):
-        records = self.repository.get(None, None)
+        records = self.repository.get()
         self.assertEqual(len(records), 3, "it should retrieve three records")
-
 
 if __name__ == '__main__':
     unittest.main()
