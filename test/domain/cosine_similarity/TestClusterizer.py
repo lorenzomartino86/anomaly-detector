@@ -1,6 +1,5 @@
 import unittest
 
-from domain.cosine_similarity.ClusterSimilarity import ClusterSimilarity
 from domain.cosine_similarity.Clusterizer import Clusterizer
 from domain.cosine_similarity.RawInput import RawInput
 from domain.cosine_similarity.TextProcessor import TextProcessor
