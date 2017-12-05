@@ -23,6 +23,10 @@ jobs:
           name: run pipeline test
           command: nosetests -w test/domain/pipeline
 
+      - run:
+          name: run repository test
+          command: nosetests -w test/adapter/repository
+
       - store_artifacts:
           path: test-reports
           destination: test-reports
