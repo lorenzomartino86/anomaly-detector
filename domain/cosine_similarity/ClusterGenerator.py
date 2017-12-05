@@ -2,7 +2,7 @@ from decorator.time import elapsed_time
 from domain.cosine_similarity.Cluster import Cluster
 from domain.cosine_similarity.CosineSimilarity import CosineSimilarity
 
-class Clusterizer(object):
+class ClusterGenerator(object):
 
     def __init__(self, ratio=.98):
         self.similarity = CosineSimilarity(ratio=ratio)

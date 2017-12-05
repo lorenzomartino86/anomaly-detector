@@ -1,14 +1,14 @@
 import unittest
 
-from domain.cosine_similarity.Clusterizer import Clusterizer
+from domain.cosine_similarity.ClusterGenerator import ClusterGenerator
 from domain.cosine_similarity.RawInput import RawInput
 from domain.cosine_similarity.TextProcessor import TextProcessor
 
 
-class TestClusterSimilarity(unittest.TestCase):
+class TestClusterGenerator(unittest.TestCase):
 
     def setUp(self):
-        self.clusterizer = Clusterizer()
+        self.clusterizer = ClusterGenerator()
         self.textProcessor = TextProcessor()
 
     def test_one_cluster(self):
