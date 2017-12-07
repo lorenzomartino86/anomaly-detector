@@ -1,8 +1,8 @@
 import unittest
 
-from domain.cosine_similarity.ClusterGenerator import ClusterGenerator
-from domain.cosine_similarity.RawInput import RawInput
-from domain.cosine_similarity.TextProcessor import TextProcessor
+from src.domain.cosine_similarity.ClusterGenerator import ClusterGenerator
+from src.domain.cosine_similarity.RawInput import RawInput
+from src.domain.cosine_similarity.TextProcessor import TextProcessor
 
 
 class TestClusterGenerator(unittest.TestCase):

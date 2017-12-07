@@ -1,6 +1,6 @@
-from domain.cosine_similarity.ClusterGenerator import ClusterGenerator
-from domain.cosine_similarity.ClusterSimilarity import ClusterSimilarity
-from domain.cosine_similarity.TextProcessor import TextProcessor
+from src.domain.cosine_similarity.ClusterGenerator import ClusterGenerator
+from src.domain.cosine_similarity.ClusterSimilarity import ClusterSimilarity
+from src.domain.cosine_similarity.TextProcessor import TextProcessor
 
 
 class ClusterPipeline(object):

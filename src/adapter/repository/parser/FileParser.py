@@ -1,6 +1,5 @@
-from domain.cosine_similarity.RawInput import RawInput
-from domain.usecase.port.Parser import Parser
-
+from src.domain.cosine_similarity.RawInput import RawInput
+from src.domain.usecase.channel.Parser import Parser
 
 class FileParser(Parser):
 

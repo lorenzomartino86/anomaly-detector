@@ -1,5 +1,5 @@
-from adapter.repository.parser.FileParser import FileParser
-from domain.usecase.port.Repository import Repository
+from src.adapter.repository.parser.FileParser import FileParser
+from src.domain.usecase.channel.Repository import Repository
 
 
 class FileRepository(Repository):

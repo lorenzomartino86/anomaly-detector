@@ -1,8 +1,8 @@
 import unittest
 
-from domain.cosine_similarity.ClusterSimilarity import ClusterSimilarity
-from domain.cosine_similarity.RawInput import RawInput
-from domain.pipeline.ClusterPipeline import ClusterPipeline
+from src.domain.cosine_similarity.RawInput import RawInput
+from src.domain.pipeline.ClusterPipeline import ClusterPipeline
+
 
 class TestClusterPipeline(unittest.TestCase):
 

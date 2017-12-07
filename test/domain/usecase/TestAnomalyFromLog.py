@@ -1,15 +1,15 @@
 import unittest
 
-from adapter.repository.FileRepository import FileRepository
-from domain.usecase.LogDetector import LogDetector
+from src.adapter.repository.FileRepository import FileRepository
+from src.domain.usecase import AnomalyFromLog
 
 
-class TestLogDetector(unittest.TestCase):
+class TestAnomalyFromLog(unittest.TestCase):
 
     def setUp(self):
         repository = FileRepository(train_path='../../resources/train.txt',
                                     test_path='../../resources/test.txt')
-        self.logDetector = LogDetector(repository=repository)
+        self.logDetector = AnomalyFromLog(repository=repository)
 
     def test_one_cluster(self):
         clusters = self.logDetector.detect_anomaly()

@@ -1,9 +1,6 @@
 import unittest
 
-from adapter.repository.FileRepository import FileRepository
-from domain.cosine_similarity.ClusterGenerator import ClusterGenerator
-from domain.cosine_similarity.RawInput import RawInput
-from domain.cosine_similarity.TextProcessor import TextProcessor
+from src.adapter.repository.FileRepository import FileRepository
 
 
 class TestFileRepository(unittest.TestCase):

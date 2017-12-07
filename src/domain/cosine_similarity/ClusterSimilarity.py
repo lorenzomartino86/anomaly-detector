@@ -1,5 +1,4 @@
-from domain.cosine_similarity.CosineSimilarity import CosineSimilarity
-
+from src.domain.cosine_similarity.CosineSimilarity import CosineSimilarity
 
 class ClusterSimilarity(object):
 

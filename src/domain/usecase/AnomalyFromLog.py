@@ -1,4 +1,4 @@
-from domain.pipeline.ClusterPipeline import ClusterPipeline
+from src.domain.pipeline.ClusterPipeline import ClusterPipeline
 
 class LogDetector(object):
 
