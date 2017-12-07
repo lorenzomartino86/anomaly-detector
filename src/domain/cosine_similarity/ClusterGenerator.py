@@ -1,7 +1,6 @@
-from decorator.time import elapsed_time
-
-from src.domain import Cluster
-from src.domain import CosineSimilarity
+from src.decorator.time import elapsed_time
+from src.domain.cosine_similarity.Cluster import Cluster
+from src.domain.cosine_similarity.CosineSimilarity import CosineSimilarity
 
 
 class ClusterGenerator(object):
