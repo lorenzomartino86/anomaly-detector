@@ -27,6 +27,10 @@ jobs:
           name: run repository test
           command: nosetests -w test/adapter/repository
 
+      - run:
+          name: run persister test
+          command: nosetests -w test/adapter/persister
+
       - store_artifacts:
           path: test-reports
           destination: test-reports
