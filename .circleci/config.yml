@@ -30,7 +30,3 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
-
-      - run:
-          name: test coverage
-          command: codecov
