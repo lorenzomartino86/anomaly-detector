@@ -1,8 +1,8 @@
 from src.domain.pipeline.ClusterPipeline import ClusterPipeline
 
-class LogDetector(object):
+class AnomalyFromLog(object):
 
-    def __init__(self, repository):
+    def __init__(self, repository, notifier, persister):
         self.pipeline = ClusterPipeline()
         self.repository = repository
 
@@ -12,7 +12,8 @@ class LogDetector(object):
         train_raw, test_raw = self.repository.get()
 
         # cluster pipeline
-        new_clusters = self.pipeline.detect(train_raw=train_raw, test_raw=test_raw)
+        new_clusters = self.pipeline.detect(train_raw=train_raw,
+                                            test_raw=test_raw)
 
         # notifications
 
