@@ -3,8 +3,6 @@ import unittest
 from AnomalyClassifier import LogClassifier
 from src.adapter.persister.FilePersister import FilePersister
 from src.adapter.repository.FileRepository import FileRepository
-from src.adapter.repository.parser import FileParser
-
 
 class TestAnomalyClassifier(unittest.TestCase):
 

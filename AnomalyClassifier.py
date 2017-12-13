@@ -1,7 +1,9 @@
 from src.domain.usecase.AnomalyFromLog import AnomalyFromLog
 
 class LogClassifier(object):
-
+    """
+       Factory class for AnomalyFromLog use case
+    """
     def __init__(self):
         self.repository = None
         self.notifier = None

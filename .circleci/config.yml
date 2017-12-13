@@ -31,6 +31,10 @@ jobs:
           name: run persister test
           command: nosetests -w test/adapter/persister
 
+      - run:
+          name: run e2e test
+          command: nosetests -w test
+
       - store_artifacts:
           path: test-reports
           destination: test-reports
