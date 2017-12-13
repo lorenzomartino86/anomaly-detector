@@ -33,7 +33,7 @@ jobs:
 
       - run:
           name: run e2e test
-          command: nosetests -w test
+          command: nosetests -w test/e2e
 
       - store_artifacts:
           path: test-reports
