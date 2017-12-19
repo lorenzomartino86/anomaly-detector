@@ -8,7 +8,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class TestAnomalyClassifier(unittest.TestCase):
 
-    def test_(self):
+    def test_log_classifier(self):
         classifier = LogClassifier()
 
         classifier.add_repository(FileRepository(train_file=open(ROOT_DIR + '/resources/test.txt'),

@@ -32,6 +32,10 @@ jobs:
           command: nosetests -w test/adapter/persister
 
       - run:
+          name: run notifier test
+          command: nosetests -w test/adapter/notification
+
+      - run:
           name: run e2e test
           command: nosetests -w test/e2e
 
