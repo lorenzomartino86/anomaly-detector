@@ -29,7 +29,7 @@ class AnomalyFromLog(object):
 
         # clusters persistence
         if self.test_persister is not None:
-            self.test_persister.save(filename=self.today_cluster_filename, object=new_clusters)
+            self.test_persister.save(object=new_clusters)
 
         return new_clusters
 

@@ -12,10 +12,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 class TestAnomalyClassifier(unittest.TestCase):
 
     def test_log_classifier(self):
-        today = datetime.today()
-        cluster_persisted_filename = "clusters_" + today.strftime('%Y-%m-%d') + ".obj"
-        test_persister = FilePersister(base_path=ROOT_DIR + '/resources')
-        train_persister = FilePersister(base_path=ROOT_DIR + '/resources')
+        test_persister, train_persister = self.get_persisters()
 
         classifier = LogClassifier()
 
@@ -38,18 +35,23 @@ class TestAnomalyClassifier(unittest.TestCase):
         self.assertEqual(len(notifier.queue.get()), 2,
                          "it should retrieve 2 new clusters notified to Broker")
 
-        self.assertEqual(len(test_persister.get(cluster_persisted_filename)), 2,
+        self.assertEqual(len(test_persister.get()), 2,
                          "it should retrieve 2 new persisted clusters")
 
-        test_persister.remove(cluster_persisted_filename)
+        test_persister.remove()
 
+    def get_persisters(self):
+        today = datetime.today()
+        yesterday = datetime.today() - timedelta(days=1)
+        test_persister_file = "clusters_" + today.strftime('%Y-%m-%d') + ".obj"
+        train_persister_file = "clusters_" + yesterday.strftime('%Y-%m-%d') + ".obj"
+        test_persister = FilePersister(file=ROOT_DIR + '/resources/' + test_persister_file)
+        train_persister = FilePersister(file=ROOT_DIR + '/resources/' + train_persister_file)
+        return test_persister, train_persister
 
     def test_complex_classification(self):
 
-        today = datetime.today()
-        cluster_persisted_filename = "clusters_" + today.strftime('%Y-%m-%d') + ".obj"
-        test_persister = FilePersister(base_path=ROOT_DIR + '/resources')
-        train_persister = FilePersister(base_path=ROOT_DIR + '/resources')
+        test_persister, train_persister = self.get_persisters()
 
         classifier = LogClassifier()
 
@@ -72,24 +74,16 @@ class TestAnomalyClassifier(unittest.TestCase):
         self.assertEqual(len(notifier.queue.get()), 3,
                          "it should retrieve 3 new clusters notified to Broker")
 
-        self.assertEqual(len(test_persister.get(cluster_persisted_filename)), 3,
+        self.assertEqual(len(test_persister.get()), 3,
                          "it should retrieve 3 new persisted clusters")
 
-        test_persister.remove(cluster_persisted_filename)
+        test_persister.remove()
 
 
     def test_log_classifier_with_persisted_train_clusters(self):
 
-        today = datetime.today()
-        cluster_persisted_filename = "clusters_" + today.strftime('%Y-%m-%d') + ".obj"
-        test_persister = FilePersister(base_path=ROOT_DIR + '/resources')
-        train_persister = FilePersister(base_path=ROOT_DIR + '/resources')
-
-        yesterday = datetime.today() - timedelta(days=1)
-        train_cluster_persister = FilePersister(base_path=ROOT_DIR + '/resources')
-        train_cluster_persister.save(
-            filename="clusters_" + yesterday.strftime('%Y-%m-%d') + ".obj",
-            object=None)
+        test_persister, train_persister = self.get_persisters()
+        train_persister.save(object=None)
 
         classifier = LogClassifier()
 
@@ -112,10 +106,10 @@ class TestAnomalyClassifier(unittest.TestCase):
         self.assertEqual(len(notifier.queue.get()), 2,
                          "it should retrieve 2 new clusters notified to Broker")
 
-        self.assertEqual(len(test_persister.get(cluster_persisted_filename)), 2,
+        self.assertEqual(len(test_persister.get()), 2,
                          "it should retrieve 2 new persisted clusters")
 
-        test_persister.remove(cluster_persisted_filename)
+        test_persister.remove()
 
 if __name__ == '__main__':
     unittest.main()
