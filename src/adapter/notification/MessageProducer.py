@@ -1,7 +1,7 @@
 from src.domain.usecase.channel.Notifier import Notifier
 import pika
 
-class MessageBroker(Notifier):
+class MessageProducer(Notifier):
 
     def __init__(self, host, queue):
         # Connection to a Broker running on the given hostname

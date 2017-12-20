@@ -1,5 +1,5 @@
+from src.decorator.logging import exception
 from src.domain.pipeline.ClusterPipeline import ClusterPipeline
-from datetime import datetime, timedelta
 
 class AnomalyFromLog(object):
 
@@ -10,9 +10,8 @@ class AnomalyFromLog(object):
         self.pipeline = ClusterPipeline()
         self.train_repository = train_repository
         self.test_repository = test_repository
-        self.today_cluster_filename = "clusters_" + datetime.today().strftime('%Y-%m-%d') + ".obj"
-        self.yesterday_cluster_filename = "clusters_" + (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d') + ".obj"
 
+    @exception
     def detect_anomaly(self):
 
         # get train and test set

@@ -1,12 +1,15 @@
 from time import time
 from functools import wraps
 
-def elapsed_time(f):
-    @wraps(f)
+from src.decorator.logging import create_logger
+
+def elapsed_time(function):
+    @wraps(function)
     def wrapper(*args, **kwds):
+        logger = create_logger()
         start = time()
-        result = f(*args, **kwds)
+        result = function(*args, **kwds)
         elapsed = time() - start
-        print ("%s took %f seconds to finish" % (f.__name__, elapsed))
+        logger.info("%s took %f seconds to finish" % (function.__name__, elapsed))
         return result
     return wrapper
