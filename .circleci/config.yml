@@ -16,28 +16,8 @@ jobs:
           command: pip install --upgrade pip && sudo easy_install nose && pip install --user -r requirements/test.txt
 
       - run:
-          name: run cosine similarity test
-          command: nosetests -w test/domain/cosine_similarity
-
-      - run:
-          name: run pipeline test
-          command: nosetests -w test/domain/pipeline
-
-      - run:
-          name: run repository test
-          command: nosetests -w test/adapter/repository
-
-      - run:
-          name: run persister test
-          command: nosetests -w test/adapter/persister
-
-      - run:
-          name: run notifier test
-          command: nosetests -w test/adapter/notification
-
-      - run:
-          name: run e2e test
-          command: nosetests -w test/e2e
+          name: run all tests
+          command: nosetests -v
 
       - store_artifacts:
           path: test-reports

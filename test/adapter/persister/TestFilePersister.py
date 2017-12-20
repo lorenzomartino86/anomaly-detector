@@ -1,12 +1,13 @@
 import unittest
 
 from src.adapter.persister.FilePersister import FilePersister
-
+import os
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class TestFilePersister(unittest.TestCase):
 
     def setUp(self):
-        self.persister = FilePersister(base_path='../../resources')
+        self.persister = FilePersister(base_path=ROOT_DIR + '/../../resources')
 
     def test_load_new_persister(self):
         object = list()

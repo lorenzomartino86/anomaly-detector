@@ -30,5 +30,5 @@ class ClusterPipeline(object):
             if similarity.is_new_cluster(test_cluster):
                 new_clusters.append(test_cluster)
 
-        return new_clusters
+        return new_clusters, train_clusters, test_clusters
 
