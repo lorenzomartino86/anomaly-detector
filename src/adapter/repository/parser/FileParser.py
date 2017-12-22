@@ -1,7 +1,7 @@
 from src.domain.cosine_similarity.RawInput import RawInput
 from src.domain.usecase.channel.Parser import Parser
 
-class SimpleFileParser(Parser):
+class SimpleParser(Parser):
 
     def parse(self, records):
         parsed_records = list()
