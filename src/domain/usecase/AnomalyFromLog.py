@@ -3,8 +3,8 @@ from src.domain.pipeline.ClusterPipeline import ClusterPipeline
 
 class AnomalyFromLog(object):
 
-    def __init__(self, train_repository, test_repository, notifier, train_persister, test_persister):
-        self.test_persister = test_persister
+    def __init__(self, train_repository, test_repository, notifier, train_persister, outlier_persister):
+        self.outlier_persister = outlier_persister
         self.train_persister = train_persister
         self.notifier = notifier
         self.pipeline = ClusterPipeline()
@@ -27,8 +27,8 @@ class AnomalyFromLog(object):
         self.notifier.notify(new_clusters)
 
         # clusters persistence
-        if self.test_persister is not None:
-            self.test_persister.save(object=new_clusters)
+        if self.outlier_persister is not None:
+            self.outlier_persister.save(object=new_clusters)
 
         return new_clusters
 

@@ -9,7 +9,7 @@ class LogClassifier(object):
         self.test_repository = None
         self.notifier = None
         self.train_persister = None
-        self.test_persister = None
+        self.outlier_persister = None
 
     def add_train_repository(self, repository):
         self.train_repository = repository
@@ -23,13 +23,13 @@ class LogClassifier(object):
     def add_train_persister(self, persister):
         self.train_persister = persister
 
-    def add_test_persister(self, persister):
-        self.test_persister = persister
+    def add_outlier_persister(self, persister):
+        self.outlier_persister = persister
 
     def compile(self):
         return AnomalyFromLog(train_repository=self.train_repository,
                               test_repository=self.test_repository,
                               notifier=self.notifier,
                               train_persister=self.train_persister,
-                              test_persister=self.test_persister)
+                              outlier_persister=self.outlier_persister)
 

@@ -17,7 +17,7 @@ class TestAnomalyFromLog(unittest.TestCase):
                                           test_repository=test_repository,
                                           notifier=InMemoryBroker(),
                                           train_persister=None,
-                                          test_persister=None)
+                                          outlier_persister=None)
 
     def test_one_cluster(self):
         clusters = self.logDetector.detect_anomaly()
