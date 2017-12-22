@@ -9,7 +9,7 @@ from src.adapter.persister.FilePersister import FilePersister
 from src.adapter.repository.FileRepository import FileRepository
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-class TestAnomalyClassifier(unittest.TestCase):
+class TestAnomalyClassifierFromFile(unittest.TestCase):
 
     def test_log_classifier(self):
         outlier_persister, train_persister = self.get_persisters()
