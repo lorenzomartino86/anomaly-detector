@@ -1,1 +1,2 @@
 [![CircleCI](https://circleci.com/gh/lorenzomartino86/anomaly-detector.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/lorenzomartino86/anomaly-detector)
+[![codecov](https://codecov.io/gh/lorenzomartino86/anomaly-detector/branch/master/graph/badge.svg)](https://codecov.io/gh/lorenzomartino86/anomaly-detector)
