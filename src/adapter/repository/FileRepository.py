@@ -1,4 +1,4 @@
-from src.adapter.repository.parser.FileParser import SimpleParser
+from src.adapter.repository.parser.SimpleParser import SimpleParser
 from src.domain.usecase.channel.Repository import Repository
 
 class FileRepository(Repository):

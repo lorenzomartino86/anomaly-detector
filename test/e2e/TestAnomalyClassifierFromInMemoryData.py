@@ -11,8 +11,8 @@ from src.adapter.repository.InMemoryRepository import InMemoryRepository
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-class TestAnomalyClassifierFromInMemoryData(unittest.TestCase):
 
+class TestAnomalyClassifierFromInMemoryData(unittest.TestCase):
     def test_log_classifier(self):
         outlier_persister, train_persister = self.get_persisters()
 
@@ -44,9 +44,7 @@ class TestAnomalyClassifierFromInMemoryData(unittest.TestCase):
 
         outlier_persister.remove()
 
-
     def test_log_classifier_with_persisted_train_clusters(self):
-
         outlier_persister, train_persister = self.get_persisters()
         test_data, train_data = self.get_train_and_test_data()
 
@@ -98,6 +96,7 @@ class TestAnomalyClassifierFromInMemoryData(unittest.TestCase):
         test_data.append("BAD NEWS")
         test_data.append("MERRY CHRISTMAS")
         return test_data, train_data
+
 
 if __name__ == '__main__':
     unittest.main()
