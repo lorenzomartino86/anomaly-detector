@@ -3,7 +3,7 @@ from src.domain.pipeline.ClusterPipeline import ClusterPipeline
 
 class AnomalyFromLog(object):
 
-    def __init__(self, train_repository, test_repository, notifier, train_persister, outlier_persister):
+    def __init__(self, train_repository, test_repository, notifier, train_persister=None, outlier_persister=None):
         self.outlier_persister = outlier_persister
         self.train_persister = train_persister
         self.notifier = notifier

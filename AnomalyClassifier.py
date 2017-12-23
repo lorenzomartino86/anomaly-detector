@@ -4,21 +4,12 @@ class LogClassifier(object):
     """
        Factory class for AnomalyFromLog use case
     """
-    def __init__(self):
-        self.train_repository = None
-        self.test_repository = None
-        self.notifier = None
+    def __init__(self, train_repository, test_repository, notifier):
+        self.train_repository = train_repository
+        self.test_repository = test_repository
+        self.notifier = notifier
         self.train_persister = None
         self.outlier_persister = None
-
-    def add_train_repository(self, repository):
-        self.train_repository = repository
-
-    def add_test_repository(self, repository):
-        self.test_repository = repository
-
-    def add_notifier(self, notifier):
-        self.notifier = notifier
 
     def add_train_persister(self, persister):
         self.train_persister = persister
