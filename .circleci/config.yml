@@ -13,7 +13,7 @@ jobs:
 
       - run:
           name: install dependencies
-          command: pip install --upgrade pip && sudo easy_install nose && pip install --user -r requirements/test.txt
+          command: pip install --upgrade pip && sudo easy_install nose && pip install --user -r requirements/test.txt && npm install codecov
 
       - run:
           name: run all tests
@@ -21,7 +21,7 @@ jobs:
 
       - run:
           name: generating coverage report
-          command: codecov
+          command: npm run codecov
 
       - store_artifacts:
           path: test-reports
