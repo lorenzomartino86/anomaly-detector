@@ -17,7 +17,7 @@ jobs:
 
       - run:
           name: run all tests
-          command: nosetests --with-coverage --cover-package src -v
+          command: nosetests --with-coverage --cover-package --cover-html-dir=$CIRCLE_ARTIFACTS src -v
 
       - store_artifacts:
           path: test-reports
