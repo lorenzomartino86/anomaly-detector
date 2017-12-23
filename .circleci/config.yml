@@ -17,11 +17,11 @@ jobs:
 
       - run:
           name: run all tests
-          command: pwd && nosetests --with-coverage --cover-package src --cover-html -v && ls -latr /home/circleci/repo/* && bash <(curl -s https://codecov.io/bash)
+          command: nosetests --with-coverage --cover-package src --cover-html --cover-xml --cover-html-dir=/tmp --cover-xml-file=/tmp/coverage.xml -v
 
       - run:
           name: generating coverage report
-          command: bash <(curl -s https://codecov.io/bash)
+          command: cd /tmp && bash <(curl -s https://codecov.io/bash)
 
       - store_artifacts:
           path: test-reports
