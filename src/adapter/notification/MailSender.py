@@ -41,10 +41,3 @@ class MailSender(Notifier):
         message['From'] = self._from
         self.server.sendmail(self._from, self.to, message.as_string())
         self.server.quit()
-
-    def get_clusters_reports(clusters):
-        reporter = ClusterReport()
-        clusters_reports = []
-        for cluster in clusters:
-            clusters_reports.append(reporter.get_report_for(cluster))
-        return clusters_reports

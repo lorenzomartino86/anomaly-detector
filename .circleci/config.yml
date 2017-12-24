@@ -17,7 +17,7 @@ jobs:
 
       - run:
           name: run all tests
-          command: nosetests --with-coverage --cover-package src --cover-html --cover-xml --cover-html-dir=/tmp --cover-xml-file=/tmp/coverage.xml -v
+          command: nosetests --cover-inclusive --cover-erase --with-coverage --cover-package src --cover-html --cover-xml --cover-html-dir=/tmp --cover-xml-file=/tmp/coverage.xml -v
 
       - run:
           name: generating coverage report
