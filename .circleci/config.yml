@@ -17,11 +17,11 @@ jobs:
 
       - run:
           name: run all tests
-          command: nosetests --cover-inclusive --cover-erase --with-coverage --cover-package src --cover-html --cover-xml --cover-html-dir=/tmp --cover-xml-file=/tmp/coverage.xml -v
+          command: nosetests --cover-inclusive --with-coverage --cover-package src --cover-html --cover-xml --cover-html-dir=/tmp -v
 
       - run:
           name: generating coverage report
-          command: cd /tmp && bash <(curl -s https://codecov.io/bash)
+          command: bash <(curl -s https://codecov.io/bash)
 
       - store_artifacts:
           path: test-reports
