@@ -1,8 +1,7 @@
 class ClusterReport(object):
 
-    def prepare(self, clusters):
+    def prepare(self, records):
         report = str()
-        for cluster in clusters:
-            for record in cluster.records:
-                record += "<b>[record-" + record + ":<span style=\"color: #ff0000\">"
+        for record in records:
+            report += "<b>[record-" + record + ":<span style=\"color: #ff0000\">"
         return report

@@ -9,11 +9,12 @@ from src.domain.usecase.channel.Notifier import Notifier
 
 class MailSender(Notifier):
 
-    def __init__(self, server, _from, to, subject, username, password, report=ClusterReport()):
+    def __init__(self, server, _from, to, subject, username=None, password=None, report=ClusterReport()):
         self.server = smtplib.SMTP(server)
         self.server.ehlo()
         self.server.starttls()
-        self.server.login(username, password)
+        if username is not None and password is not None:
+            self.server.login(username, password)
         self.subject = subject
         self.to = to
         self._from = _from
