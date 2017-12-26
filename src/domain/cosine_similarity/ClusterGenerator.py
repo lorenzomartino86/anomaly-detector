@@ -1,4 +1,4 @@
-from src.decorator.time import elapsed_time
+from src.decorator.timer import elapsed_time
 from src.domain.cosine_similarity.Cluster import Cluster
 from src.domain.cosine_similarity.CosineSimilarity import CosineSimilarity
 
