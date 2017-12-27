@@ -1,12 +1,14 @@
+from src.domain.pipeline.ClusterPipeline import ClusterPipeline
 from src.domain.usecase.AnomalyFromLog import AnomalyFromLog
 
 class LogClassifier(object):
     """
        Factory class for AnomalyFromLog use case
     """
-    def __init__(self, train_repository, test_repository, notifier):
+    def __init__(self, train_repository, test_repository, notifier, pipeline=ClusterPipeline()):
         self.train_repository = train_repository
         self.test_repository = test_repository
+        self.pipeline = pipeline
         self.notifier = notifier
         self.train_persister = None
         self.outlier_persister = None
