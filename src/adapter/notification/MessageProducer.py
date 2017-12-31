@@ -1,10 +1,12 @@
+from src.adapter.notification.presenter.ClusterReport import ClusterReport
 from src.domain.usecase.channel.Notifier import Notifier
 import pika
 
-class MessageProducer(Notifier):
 
-    def __init__(self, host, queue):
+class MessageProducer(Notifier):
+    def __init__(self, host, queue, report=ClusterReport()):
         # Connection to a Broker running on the given hostname
+        self.report = report
         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host))
         self.channel = self.connection.channel()
         # Make sure the recipient queue exists
@@ -12,13 +14,8 @@ class MessageProducer(Notifier):
         self.queue = queue
 
     def notify(self, new_clusters):
-        message = str()
-
-        for cluster in new_clusters:
-            message += cluster.records
+        message = self.report.prepare(new_clusters)
 
         self.channel.basic_publish(exchange='', routing_key=self.queue, body=message)
 
         self.connection.close()
-
-
