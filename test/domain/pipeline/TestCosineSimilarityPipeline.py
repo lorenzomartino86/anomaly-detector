@@ -1,13 +1,13 @@
 import unittest
 
 from src.domain.cosine_similarity.RawInput import RawInput
-from src.domain.pipeline.ClusterPipeline import ClusterPipeline
+from src.domain.pipeline.CosineSimilarityPipeline import CosineSimilarityPipeline
 
 
-class TestClusterPipeline(unittest.TestCase):
+class TestCosineSimilarityPipeline(unittest.TestCase):
 
     def setUp(self):
-        self.pipeline = ClusterPipeline()
+        self.pipeline = CosineSimilarityPipeline()
 
     def test_no_new_cluster(self):
         train_raw = [RawInput(corpus="Hello world!"),

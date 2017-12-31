@@ -1,9 +1,10 @@
 from src.domain.cosine_similarity.ClusterGenerator import ClusterGenerator
 from src.domain.cosine_similarity.ClusterSimilarity import ClusterSimilarity
 from src.domain.cosine_similarity.TextProcessor import TextProcessor
+from src.domain.pipeline.Pipeline import Pipeline
 
 
-class ClusterPipeline(object):
+class CosineSimilarityPipeline(Pipeline):
 
     def __init__(self, ratio=.70):
         self.ratio=ratio

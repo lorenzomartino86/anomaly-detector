@@ -3,7 +3,7 @@ import os
 
 from datetime import datetime, timedelta
 
-from AnomalyClassifier import LogClassifier
+from ClusterClassifierFactory import ClusterClassifierFactory
 from src.adapter.notification.InMemoryBroker import InMemoryBroker
 from src.adapter.persister.FilePersister import FilePersister
 from src.adapter.repository.FileRepository import FileRepository
@@ -11,17 +11,17 @@ from src.adapter.repository.FileRepository import FileRepository
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-class TestAnomalyClassifierFromFile(unittest.TestCase):
+class TestClusterClassifierFromFile(unittest.TestCase):
     def test_log_classifier(self):
         outlier_persister, train_persister = self.get_persisters()
 
-        classifier = LogClassifier(train_repository=FileRepository(file=open(ROOT_DIR + '/../resources/train.txt')),
-                                   test_repository=FileRepository(file=open(ROOT_DIR + '/../resources/test.txt')),
-                                   notifier=InMemoryBroker())
+        classifier = ClusterClassifierFactory(train_repository=FileRepository(file=open(ROOT_DIR + '/../resources/train.txt')),
+                                              test_repository=FileRepository(file=open(ROOT_DIR + '/../resources/test.txt')),
+                                              notifier=InMemoryBroker())
         classifier.add_outlier_persister(outlier_persister)
         classifier = classifier.compile()
 
-        new_clusters = classifier.detect_anomaly()
+        new_clusters = classifier.detect_outliers()
 
         self.assertEqual(len(new_clusters), 2,
                          "it should retrieve 2 new clusters")
@@ -37,13 +37,14 @@ class TestAnomalyClassifierFromFile(unittest.TestCase):
     def test_complex_classification(self):
         outlier_persister, train_persister = self.get_persisters()
 
-        classifier = LogClassifier(train_repository=FileRepository(file=open(ROOT_DIR + '/../resources/complex_train.txt')),
-                                   test_repository=FileRepository(file=open(ROOT_DIR + '/../resources/complex_test.txt')),
-                                   notifier=InMemoryBroker())
+        classifier = ClusterClassifierFactory(
+            train_repository=FileRepository(file=open(ROOT_DIR + '/../resources/complex_train.txt')),
+            test_repository=FileRepository(file=open(ROOT_DIR + '/../resources/complex_test.txt')),
+            notifier=InMemoryBroker())
         classifier.add_outlier_persister(outlier_persister)
         classifier = classifier.compile()
 
-        new_clusters = classifier.detect_anomaly()
+        new_clusters = classifier.detect_outliers()
 
         self.assertEqual(len(new_clusters), 3,
                          "it should retrieve 3 new clusters")
@@ -60,14 +61,13 @@ class TestAnomalyClassifierFromFile(unittest.TestCase):
         outlier_persister, train_persister = self.get_persisters()
         train_persister.save(object=None)
 
-        classifier = LogClassifier(
-            train_repository=FileRepository(file=open(ROOT_DIR + '/../resources/train.txt')),
-            test_repository=FileRepository(file=open(ROOT_DIR + '/../resources/test.txt')),
-            notifier=InMemoryBroker())
+        classifier = ClusterClassifierFactory(train_repository=FileRepository(file=open(ROOT_DIR + '/../resources/train.txt')),
+                                              test_repository=FileRepository(file=open(ROOT_DIR + '/../resources/test.txt')),
+                                              notifier=InMemoryBroker())
         classifier.add_outlier_persister(outlier_persister)
         classifier = classifier.compile()
 
-        new_clusters = classifier.detect_anomaly()
+        new_clusters = classifier.detect_outliers()
 
         self.assertEqual(len(new_clusters), 2,
                          "it should retrieve 2 new clusters")

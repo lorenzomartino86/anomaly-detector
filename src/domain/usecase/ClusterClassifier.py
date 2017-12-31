@@ -1,11 +1,11 @@
 from src.decorator.logging import exception
-from src.domain.pipeline.ClusterPipeline import ClusterPipeline
+from src.domain.pipeline.CosineSimilarityPipeline import CosineSimilarityPipeline
 
-class AnomalyFromLog(object):
 
+class ClusterClassifier(object):
     def __init__(self, train_repository, test_repository, notifier,
                  train_persister=None, outlier_persister=None,
-                 pipeline=ClusterPipeline()):
+                 pipeline=CosineSimilarityPipeline()):
         self.outlier_persister = outlier_persister
         self.train_persister = train_persister
         self.notifier = notifier
@@ -14,8 +14,7 @@ class AnomalyFromLog(object):
         self.test_repository = test_repository
 
     @exception
-    def detect_anomaly(self):
-
+    def detect_outliers(self):
         # get train and test set
         train_raw = self.train_repository.get()
 
@@ -23,7 +22,7 @@ class AnomalyFromLog(object):
 
         # cluster pipeline
         new_clusters, train_clusters, test_clusters = self.pipeline.detect(train_raw=train_raw,
-                                            test_raw=test_raw)
+                                                                           test_raw=test_raw)
 
         # notifications
         self.notifier.notify(new_clusters)
@@ -33,4 +32,3 @@ class AnomalyFromLog(object):
             self.outlier_persister.save(object=new_clusters)
 
         return new_clusters
-

@@ -3,26 +3,25 @@ import os
 
 from datetime import datetime, timedelta
 
-from AnomalyClassifier import LogClassifier
+from ClusterClassifierFactory import ClusterClassifierFactory
 from src.adapter.notification.InMemoryBroker import InMemoryBroker
 from src.adapter.persister.FilePersister import FilePersister
 from src.adapter.repository.InMemoryRepository import InMemoryRepository
-from src.domain.pipeline.ClusterPipeline import ClusterPipeline
+from src.domain.pipeline.CosineSimilarityPipeline import CosineSimilarityPipeline
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-class TestAnomalyClassifierFromInMemoryData(unittest.TestCase):
+class TestClusterClassifierFromInMemoryData(unittest.TestCase):
     def test_log_classifier(self):
         test_data, train_data = self.get_train_and_test_data()
 
-        classifier = LogClassifier(train_repository=InMemoryRepository(data=train_data),
-                                   test_repository=InMemoryRepository(data=test_data),
-                                   notifier=InMemoryBroker())
+        classifier = ClusterClassifierFactory(train_repository=InMemoryRepository(data=train_data),
+                                              test_repository=InMemoryRepository(data=test_data), notifier=InMemoryBroker())
 
         classifier = classifier.compile()
 
-        outliers = classifier.detect_anomaly()
+        outliers = classifier.detect_outliers()
 
         self.assertEqual(len(outliers), 3,
                          "it should retrieve 3 outliers")
@@ -39,13 +38,11 @@ class TestAnomalyClassifierFromInMemoryData(unittest.TestCase):
         test_data.append("It's an outlier")
         test_data.append("Hello world")
 
-        classifier = LogClassifier(train_repository=InMemoryRepository(data=train_data),
-                                   test_repository=InMemoryRepository(data=test_data),
-                                   notifier=InMemoryBroker(),
-                                   pipeline=ClusterPipeline())
+        classifier = ClusterClassifierFactory(train_repository=InMemoryRepository(data=train_data),
+                                              test_repository=InMemoryRepository(data=test_data), notifier=InMemoryBroker())
         classifier = classifier.compile()
 
-        outliers = classifier.detect_anomaly()
+        outliers = classifier.detect_outliers()
 
         for outlier in outliers:
             print (outlier.records)
@@ -62,13 +59,12 @@ class TestAnomalyClassifierFromInMemoryData(unittest.TestCase):
         test_data, train_data = self.get_train_and_test_data()
         train_persister.save(object=None)
 
-        classifier = LogClassifier(train_repository=InMemoryRepository(data=train_data),
-                                   test_repository=InMemoryRepository(data=test_data),
-                                   notifier=InMemoryBroker())
+        classifier = ClusterClassifierFactory(train_repository=InMemoryRepository(data=train_data),
+                                              test_repository=InMemoryRepository(data=test_data), notifier=InMemoryBroker())
         classifier.add_outlier_persister(outlier_persister)
         classifier = classifier.compile()
 
-        outliers = classifier.detect_anomaly()
+        outliers = classifier.detect_outliers()
 
         self.assertEqual(len(outliers), 3,
                          "it should retrieve 3 outliers")
