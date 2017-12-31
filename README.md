@@ -33,7 +33,7 @@ The most simple classification usage is the one that use in-memory datasource
 * Compilation of cluster classifier with the mandatory fields, pipeline is set to ClusterPipeline by default: 
 
 ```
-    classifier = LogClassifier(train_repository=InMemoryRepository(data=train_data),
+    classifier = ClusterClassifierFactory(train_repository=InMemoryRepository(data=train_data),
                                test_repository=InMemoryRepository(data=test_data),
                                notifier=InMemoryBroker(),
                                pipeline=ClusterPipeline())
@@ -44,7 +44,7 @@ The most simple classification usage is the one that use in-memory datasource
 * Outlier detection: 
 
 ```
-    outliers = classifier.detect_anomaly()
+    outliers = classifier.detect_outliers()
 ```
 
 * Getting the corpus of detected outliers:
