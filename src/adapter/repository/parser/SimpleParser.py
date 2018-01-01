@@ -1,8 +1,8 @@
 from src.domain.cosine_similarity.RawInput import RawInput
 from src.domain.usecase.channel.Parser import Parser
 
-class SimpleParser(Parser):
 
+class SimpleParser(Parser):
     def parse(self, records):
         parsed_records = list()
         for row in records:

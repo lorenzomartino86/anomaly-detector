@@ -1,6 +1,7 @@
 from os.path import expanduser
 
 from src.adapter.repository.parser.SimpleParser import SimpleParser
+from src.adapter.repository.sftp.RemoteFile import RemoteFile
 from src.adapter.repository.sftp.SSHClient import SSHClient
 from src.decorator.logging import exception
 
@@ -22,13 +23,12 @@ class SFTPFileRepository(object):
     def get(self):
         self.transport(remote_file=self.remote_file,
                        local_file=self.local_file,
-                       temp_file="/tmp/" + self.local_file.get_name())
-        records = self.parser.parse(self.local_file)
-        self.local_file.close()
+                       temp_file=RemoteFile("/tmp/" + self.local_file.get_name()))
+        records = self.parser.parse(self.local_file.get_path())
         return records
 
     @exception
-    def transport(self, remote_file, temp_file, local_file):
-        self.client.copy(from_file=remote_file, to_file=temp_file)
-        self.client.sftp_session(remote_file=temp_file, local_file=local_file)
-        self.client.remove(file=temp_file)
+    def transport(self, remote_file, local_file, temp_file):
+        self.client.copy(from_file=remote_file.get_path(), to_file=temp_file.get_path())
+        self.client.sftp_session(remote_file=temp_file.get_path(), local_file=local_file.get_path())
+        self.client.remove(file=temp_file.get_path())

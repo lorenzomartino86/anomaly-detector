@@ -4,18 +4,19 @@ from unittest import TestCase
 from unittest.mock import patch, call
 
 from src.adapter.repository.SFTPFileRepository import SFTPFileRepository
+from src.adapter.repository.sftp.RemoteFile import RemoteFile
 
 
 class TestSFTPFileRepository(TestCase):
 
     def test_retrieve(self):
 
-        with patch('') as sftp_mock:
+        with patch('paramiko.SSHClient') as sftp_mock:
             hostname = 'host.test'
             username = 'user'
             password = 'password'
-            remote_file = '/home/remote/file.txt'
-            local_file = '/home/local/file.txt'
+            remote_file = RemoteFile('/home/remote/file.txt')
+            local_file = RemoteFile('/home/local/file.txt')
             repository = SFTPFileRepository(hostname=hostname,
                                             username=username,
                                             password=password,
