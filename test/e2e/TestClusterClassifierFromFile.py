@@ -3,7 +3,7 @@ import os
 
 from datetime import datetime, timedelta
 
-from ClusterClassifierFactory import ClusterClassifierFactory
+from ClassifierFactory import ClusterClassifierFactory
 from src.adapter.notification.InMemoryBroker import InMemoryBroker
 from src.adapter.persister.FilePersister import FilePersister
 from src.adapter.repository.FileRepository import FileRepository
@@ -80,7 +80,8 @@ class TestClusterClassifierFromFile(unittest.TestCase):
 
         classifier.outlier_persister.remove()
 
-    def get_persisters(self):
+    @staticmethod
+    def get_persisters():
         today = datetime.today()
         yesterday = datetime.today() - timedelta(days=1)
         outlier_persiter_file = "clusters_" + today.strftime('%Y-%m-%d') + ".obj"

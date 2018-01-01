@@ -35,8 +35,8 @@ The most simple classification usage is the one that use in-memory datasource
 ```
     classifier = ClusterClassifierFactory(train_repository=InMemoryRepository(data=train_data),
                                test_repository=InMemoryRepository(data=test_data),
-                               notifier=InMemoryBroker(),
-                               pipeline=ClusterPipeline())
+                               notifier=InMemoryBroker())
+    classifier.add_pipeline(pipeline=CosineSimilarityPipeline(ratio=.70))
     classifier = classifier.compile()
 ```
 

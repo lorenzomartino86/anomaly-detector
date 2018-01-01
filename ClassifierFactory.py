@@ -8,6 +8,7 @@ class ClusterClassifierFactory(object):
     """
 
     def __init__(self, train_repository, test_repository, notifier):
+        self.pipeline = CosineSimilarityPipeline(ratio=.70)
         self.train_repository = train_repository
         self.test_repository = test_repository
         self.notifier = notifier
@@ -20,9 +21,13 @@ class ClusterClassifierFactory(object):
     def add_outlier_persister(self, persister):
         self.outlier_persister = persister
 
+    def add_pipeline(self, pipeline):
+        self.pipeline = pipeline
+
     def compile(self):
         return ClusterClassifier(train_repository=self.train_repository,
                                  test_repository=self.test_repository,
                                  notifier=self.notifier,
                                  train_persister=self.train_persister,
-                                 outlier_persister=self.outlier_persister)
+                                 outlier_persister=self.outlier_persister,
+                                 pipeline=self.pipeline)
