@@ -13,7 +13,7 @@ jobs:
 
       - run:
           name: install dependencies
-          command: pip install --upgrade pip && sudo easy_install nose && pip install --user -r requirements/test.txt
+          command: sudo pip install --upgrade pip && sudo easy_install nose && sudo pip install --user -r requirements/test.txt
 
       - run:
           name: run all tests
