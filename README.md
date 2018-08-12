@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/lorenzomartino86/anomaly-detector/branch/master/graph/badge.svg)](https://codecov.io/gh/lorenzomartino86/anomaly-detector)
 
 # Anomaly Classifier
-This is an anomaly classifier agent designed with a hexagonal architecture in order to decouple domain stuff from any external adapter.
+This is an anomaly classifier agent designed following the clean architecture in order to decouple domain classes from any external adapter. This project is actually in its early stages and needs to be improved in future by adding real integration tests with data flows coming from different sources (applications, storages, etc.).
 
 ## Algorithms
 This project organizes the high level operational step of the algorithms inside classes called *pipelines*:
